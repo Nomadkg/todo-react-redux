@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actionCreators } from '../../redux/actions/index';
+import { actionCreators } from '../features/redux/actions';
 import './app.css';
-import TodoList from '../TodoList';
-import Input from '../Input';
-import Title from '../Title';
+import TodoList from '../features/components/TodoList';
+import Input from '../features/components/Input';
+import Title from '../common/components/Title';
 
 class App extends Component {
 
@@ -29,9 +29,9 @@ class App extends Component {
         const { todoList } = this.props;
         return (
             <div className="container">
-                <Title>
-                    To-Do List
-                </Title>
+                <Title
+                    title           = {'To-Do List'}
+                />
                 <Input
                     placeholder     = {'Type a todo, then hit enter!'}
                     onSubmitEditing = { this.onAddTodo }

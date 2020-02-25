@@ -1,12 +1,10 @@
 import React from "react";
 import './title.css';
 
-const Title = (props) => {
-    const { children } = props;
-
+const Title = ({ title }) => {
     return (
         <div className="header">
-            <div className="title">{children}</div>
+            <div className="title">{title}</div>
         </div>
     );
 };

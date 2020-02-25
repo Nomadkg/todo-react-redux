@@ -1,5 +1,5 @@
 import axios from 'axios';
-import config from '../config/api.config';
+import config from '../../common/config/api.config';
 
 const api = `${config.protocol}://${config.host}/api`;
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom'
 import { Provider } from 'react-redux';
-import App from './components/App'
-import { actionCreators } from './redux/actions'
-import Store from './redux/store'
+import App from './app'
+import { actionCreators } from './features/redux/actions'
+import Store from './features/redux/store'
 import * as serviceWorker from './registerServiceWorker';
 
 const store = Store();
