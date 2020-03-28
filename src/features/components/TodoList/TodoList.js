@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
+
 import './todo-list.css';
 
-class TodoList extends Component {
+export default class TodoList extends Component {
 
     state = {
         text: " ",
-        editableToDoId: " "
+        todoId: " "
     };
 
     onTextChange = (event) => {
@@ -13,18 +15,17 @@ class TodoList extends Component {
     };
 
     editItem = (todo) => {
-        this.setState({editableToDoId: todo._id, text: todo.text});
+        this.setState({todoId: todo._id, text: todo.text});
     };
 
     saveItem = () => {
         const { onUpdateItem } = this.props;
-        onUpdateItem(this.state.editableToDoId, this.state.text);
-        this.setState({ editableToDoId: '', text: '' });
+        onUpdateItem(this.state.todoId, this.state.text);
+        this.setState({ todoId: '', text: '' });
     };
 
     renderItem = (todo) => {
-        let isToDoEditable = this.state.editableToDoId;
-        if (isToDoEditable  === todo._id) {
+        if (this.state.todoId === todo._id) {
             return (
                 <span>
                     <input
@@ -54,5 +55,9 @@ class TodoList extends Component {
     }
 }
 
-
-export default TodoList;
+TodoList.propTypes = {
+    list:         PropTypes.array,
+    onRemoveItem: PropTypes.func,
+    onToggleItem: PropTypes.func,
+    onUpdateItem: PropTypes.func,
+};

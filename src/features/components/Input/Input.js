@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
+
 import './input.css';
 
-class Input extends Component {
+export default class Input extends Component {
     state = {
         value: ""
     };
@@ -13,12 +15,12 @@ class Input extends Component {
     handleKeyPress = (e) => {
         if (e.key !== "Enter") return;
 
-        const { onSubmitEditing } = this.props;
+        const { onAddTodo } = this.props;
         const { value } = this.state;
 
-        if (!value) return; // Don't submit if empty
+        if (!value) return;
 
-        onSubmitEditing(value);
+        onAddTodo(value);
 
         this.setState({ value: "" });
     };
@@ -39,4 +41,7 @@ class Input extends Component {
     }
 }
 
-export default Input;
+Input.propTypes = {
+    placeholder: PropTypes.string,
+    onAddTodo: PropTypes.func
+};
