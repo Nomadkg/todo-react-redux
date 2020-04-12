@@ -1,54 +1,63 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import PropTypes from 'prop-types';
 
 import './todo-list.css';
 
-const TodoList = (props) => {
-    const [ text, setText ] = useState("");
-    const [ todoId, setId ] = useState("");
-    const { list, onRemoveItem, onToggleItem, onUpdateItem } = props;
-
-    const onTextChange = (event) => {
-        setText(event.target.value);
+class TodoList extends Component {
+    state = {
+        text: "",
+        todoId: ""
     };
 
-    const editItem = (todo) => {
-        setId(todo._id);
-        setText(todo.text);
+    onTextChange = (event) => {
+        this.setState({text: event.target.value})
     };
 
-    const saveItem = () => {
-        onUpdateItem(todoId, text);
-        setId('');
-        setText('');
+    editItem = (todo) => {
+        this.setState({
+            text: todo.text,
+            todoId: todo._id
+        })
     };
 
-    const renderItem = (todo) => {
-        if (todoId === todo._id) {
+    saveItem = () => {
+        this.props.onUpdateItem(this.state.todoId, this.state.text);
+        this.setState({
+            text: '',
+            todoId: ''
+        });
+    };
+
+    renderItem = (todo) => {
+        if (this.state.todoId === todo._id) {
             return (
                 <span>
                     <input
                         type="text"
-                        value={text}
-                        onChange={onTextChange}/>
-                    <button onClick={saveItem}>Edit</button>
+                        value={this.state.text}
+                        onChange={this.onTextChange}/>
+                    <button onClick={this.saveItem}>Edit</button>
                 </span>
             );
         }
-        return (<span onDoubleClick={() => editItem(todo)}>{todo.text}</span>)
+
+        return (<span onDoubleClick={() => this.editItem(todo)}>{todo.text}</span>)
     };
 
-    return (
-        <div className="todo-list">
-            { list.map(todo => <div className="todo" key={todo._id}
-                                    style={ { textDecoration: todo.toggle ? 'line-through' : 'none'} }>
-                {renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
-                <button onClick={() => onToggleItem(todo._id)}>Toggle</button>
-                <button onClick={() => onRemoveItem(todo._id)}>Delete</button>
-            </div>)}
-        </div>
-    );
-};
+    render() {
+        const { list, onToggleItem, onRemoveItem } = this.props;
+        return (
+            <div className="todo-list">
+                { list.map(todo => <div className="todo" key={todo._id}
+                                        style={ { textDecoration: todo.toggle ? 'line-through' : 'none'} }>
+                    {this.renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button onClick={() => onToggleItem(todo._id)}>Toggle</button>
+                    <button onClick={() => onRemoveItem(todo._id)}>Delete</button>
+                </div>)}
+            </div>
+        );
+    }
+}
 
 TodoList.propTypes = {
     list:         PropTypes.array,

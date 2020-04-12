@@ -3,5 +3,5 @@ export default {
     GET_ALL: "GET_ALL",
     REMOVE: "REMOVE",
     TOGGLE: "TOGGLE",
-    SAVE: "SAVE"
+    UPDATE: "UPDATE"
 };

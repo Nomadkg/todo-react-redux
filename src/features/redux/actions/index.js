@@ -36,7 +36,7 @@ const removeTodo = (data) => {
     }
 };
 
-export const actionCreators = {
+export default {
     getAll: () => {
         return (dispatch) => {
             return TodoService.getAll()
