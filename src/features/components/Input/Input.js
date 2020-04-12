@@ -15,7 +15,7 @@ export default class Input extends Component {
     handleKeyPress = (e) => {
         if (e.key !== "Enter") return;
 
-        if (!value) return;
+        if (!this.state.value) return;
 
         this.props.onAddTodo(this.state.value);
         this.setState({value: ''});
