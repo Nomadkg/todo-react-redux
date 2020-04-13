@@ -5,8 +5,8 @@ import './todo-list.css';
 
 class TodoList extends Component {
     state = {
-        text: "",
-        todoId: ""
+        text: '',
+        todoId: ''
     };
 
     onTextChange = (event) => {

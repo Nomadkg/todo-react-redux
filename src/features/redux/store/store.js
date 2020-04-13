@@ -13,12 +13,6 @@ const store = createStore(
     applyMiddleware(sagaMiddleware)
 );
 
-// const store = () => {
-//     return createStore(
-//         rootReducer,
-//         applyMiddleware(sagaMiddleware)
-//     );
-// };
 
 sagaMiddleware.run(helloSaga);
 
