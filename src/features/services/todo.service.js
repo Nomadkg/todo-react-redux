@@ -1,7 +1,7 @@
 import axios from 'axios';
 import config from '../../common/config/api.config';
 
-const api = `${config.protocol}://${config.host}/api`;
+const api = `${config.protocol}://${config.host}`;
 
 class TodoService {
     static getAll() {

@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 import './todo-list.css';
 
 export default class TodoList extends Component {
-
     state = {
         text: " ",
         todoId: " "
     };
 
     onTextChange = (event) => {
-        this.setState({ text: event.target.value });
+        this.setState({text: event.target.value});
     };
 
     editItem = (todo) => {
@@ -21,7 +20,7 @@ export default class TodoList extends Component {
     saveItem = () => {
         const { onUpdateItem } = this.props;
         onUpdateItem(this.state.todoId, this.state.text);
-        this.setState({ todoId: '', text: '' });
+        this.setState({todoId: '', text: ''});
     };
 
     renderItem = (todo) => {
@@ -44,12 +43,14 @@ export default class TodoList extends Component {
 
         return (
             <div className="todo-list">
-                { list.map(todo => <div className="todo" key={todo._id}
-                                         style={ { textDecoration: todo.toggle ? 'line-through' : 'none'} }>
-                    {this.renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button onClick={() => onToggleItem(todo._id)}>Toggle</button>
-                    <button onClick={() => onRemoveItem(todo._id)}>Delete</button>
-                </div>)}
+                {
+                    list.map(todo => <div className="todo" key={todo._id}
+                                          style={ {textDecoration: todo.toggle ? 'line-through' : 'none'} }>
+                        { this.renderItem(todo) }&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button onClick={() => onToggleItem(todo._id)}>Toggle</button>
+                        <button onClick={() => onRemoveItem(todo._id)}>Delete</button>
+                    </div>)
+                }
             </div>
         );
     }

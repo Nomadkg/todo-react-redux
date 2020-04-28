@@ -11,7 +11,7 @@ export const rootReducer = (state = initialData, action) => {
         case types.ADD: {
             return [
                 ...state,
-                Object.assign({}, payload.body)
+                Object.assign({}, payload.todo)
             ]
         }
         case types.TOGGLE: {
