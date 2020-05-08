@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actionCreators } from '../features/redux/actions';
+import actionCreators from '../features/redux/actions';
 
 import TodoList from '../features/components/TodoList';
 import Input from '../features/components/Input';
@@ -30,11 +30,11 @@ function App(props) {
     return (
         <div className="container">
             <Title
-                title           = {'To-Do List'}
+                title        = {'To-Do List'}
             />
             <Input
-                placeholder     = {'Type a todo, then hit enter!'}
-                onAddTodo = { onAddTodo }
+                placeholder  = {'Type a todo, then hit enter!'}
+                onAddTodo    = { onAddTodo }
             />
             <TodoList
                 list         = { todoList }

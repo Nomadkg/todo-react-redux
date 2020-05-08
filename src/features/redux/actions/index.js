@@ -37,12 +37,12 @@ const removeTodo = (data) => {
     }
 };
 
-export const actionCreators = {
+export default {
     getAll: () => {
         return (dispatch) => {
             return TodoService.getAll()
                 .then((res) => {
-                    dispatch(getTodoList(res.data));
+                    dispatch(getTodoList(res));
                 })
                 .catch((error) => {
                     console.log('Cannot fetch', error)
@@ -52,9 +52,9 @@ export const actionCreators = {
     add: (todo) => {
         return (dispatch) => {
             return TodoService.add(todo)
-                .then((res) =>
-                    dispatch(createTodo(res.data))
-                )
+                .then((res) => {
+                    dispatch(createTodo(res.todo))
+                })
                 .catch((error) => {
                     console.log(error)
                 })
@@ -64,7 +64,7 @@ export const actionCreators = {
         return (dispatch) => {
             return TodoService.toggle(id)
                 .then((res) => {
-                    dispatch(changeState(res.data));
+                    dispatch(changeState(res.todo));
                 })
                 .catch((error) => {
                     console.log('Cannot toggle', error)
@@ -75,7 +75,7 @@ export const actionCreators = {
         return (dispatch) => {
             return TodoService.update(id, text)
                 .then((res) => {
-                    dispatch(updateTodo(res.data));
+                    dispatch(updateTodo(res.todo));
                 })
                 .catch((error)=> {
                     console.log('Cannot update', error)
@@ -86,7 +86,7 @@ export const actionCreators = {
         return dispatch => {
             return TodoService.remove(id)
                 .then((res) => {
-                    dispatch(removeTodo(res.data));
+                    dispatch(removeTodo(res));
                 })
                 .catch((error) => {
                     console.log('Cannot remove', error)

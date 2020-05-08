@@ -6,9 +6,7 @@ const api = `${config.protocol}://${config.host}/api`;
 class TodoService {
     static getAll() {
         return axios.get(`${api}/all`)
-            .then((res) => {
-                return res;
-            })
+            .then((res) => res.data)
             .catch((err) => {
                 console.log('Cannot fetch', err)
             })
@@ -19,9 +17,7 @@ class TodoService {
             text,
             toggle: false
         })
-            .then((res) => {
-                return res;
-            })
+            .then((res) => res.data)
             .catch((error) => {
                 console.log(error)
             })
@@ -29,9 +25,7 @@ class TodoService {
 
     static toggle(id) {
         return axios.put(`${api}/${id}/toggle`)
-            .then((res) => {
-                return res;
-            })
+            .then((res) => res.data)
             .catch((error) => {
                 console.log('Cannot toggle', error)
             })
@@ -39,9 +33,7 @@ class TodoService {
 
     static update(id, text){
         return axios.put(`${api}/${id}`, { text })
-            .then((res) => {
-                return res;
-            })
+            .then((res) => res.data)
             .catch((error)=> {
                 console.log('Cannot update', error)
             })
@@ -49,9 +41,7 @@ class TodoService {
 
     static remove(id) {
         return axios.delete(`${api}/${id}`)
-            .then((res) => {
-                return res;
-            })
+            .then((res) => res.data)
             .catch((error) => {
                 console.log('Cannot remove', error)
             })
