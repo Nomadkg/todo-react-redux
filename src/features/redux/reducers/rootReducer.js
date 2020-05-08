@@ -6,7 +6,7 @@ export const rootReducer = (state = initialData, action) => {
     const { type, payload } = action;
     switch (type) {
         case types.GET_ALL: {
-            return payload
+            return payload || state
         }
 
         case types.ADD: {
