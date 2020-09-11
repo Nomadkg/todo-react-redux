@@ -1,4 +1,4 @@
-import types from '../constants'
+import types from "../constants";
 
 const initialData = [];
 
@@ -6,34 +6,36 @@ const rootReducer = (state = initialData, action) => {
     const { type, payload } = action;
 
     switch (type) {
-        case types.GET_ALL: {
-            return payload;
+        case types.LOAD_SUCCESS: {
+            return payload || [];
         }
 
-        case types.ADD: {
-            return [
-                ...state,
-                state = payload
-            ]
+        case types.ADD_SUCCESS: {
+            return [...state, payload];
         }
 
-        case types.TOGGLE: {
+        case types.TOGGLE_SUCCESS: {
             return state.map((todo) => {
-                return todo._id === payload._id ? {...todo, toggle: !todo.toggle} : todo
+                return todo._id === payload._id
+                    ? { ...todo, toggle: !todo.toggle }
+                    : todo;
             });
         }
 
-        case types.UPDATE: {
+        case types.UPDATE_SUCCESS: {
             return state.map((todo) => {
-                return todo._id === payload._id ? {...todo, text: payload.text} : todo
+                return todo._id === payload._id
+                    ? { ...todo, text: payload.text }
+                    : todo;
             });
         }
 
-        case types.REMOVE: {
-            return state.filter((todo) => todo._id !== payload.id)
+        case types.REMOVE_SUCCESS: {
+            return state.filter((todo) => todo._id !== payload.id);
         }
 
-        default: return state;
+        default:
+            return state;
     }
 };
 
