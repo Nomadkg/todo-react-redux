@@ -1,50 +1,55 @@
-import axios from 'axios';
-import config from '../../common/config/api.config';
+import axios from "axios";
+import config from "../../common/config/api.config";
 
 const api = `${config.protocol}://${config.host}/api`;
 
 class TodoService {
     static getAll() {
-        return axios.get(`${api}/all`)
+        return axios
+            .get(`${api}/all`)
             .then((res) => res.data)
             .catch((err) => {
-                console.log('Cannot fetch', err)
-            })
+                console.log("Cannot fetch", err);
+            });
     }
 
     static add(text) {
-        return axios.post(`${api}`, {
-            text,
-            toggle: false
-        })
+        return axios
+            .post(`${api}`, {
+                text,
+                toggle: false,
+            })
             .then((res) => res.data)
             .catch((error) => {
-                console.log(error)
-            })
+                console.log(error);
+            });
     }
 
     static toggle(id) {
-        return axios.put(`${api}/${id}/toggle`)
+        return axios
+            .put(`${api}/${id}/toggle`)
             .then((res) => res.data)
             .catch((error) => {
-                console.log('Cannot toggle', error)
-            })
+                console.log("Cannot toggle", error);
+            });
     }
 
-    static update(id, text){
-        return axios.put(`${api}/${id}`, { text })
+    static update(id, text) {
+        return axios
+            .put(`${api}/${id}`, { text })
             .then((res) => res.data)
-            .catch((error)=> {
-                console.log('Cannot update', error)
-            })
+            .catch((error) => {
+                console.log("Cannot update", error);
+            });
     }
 
     static remove(id) {
-        return axios.delete(`${api}/${id}`)
+        return axios
+            .delete(`${api}/${id}`)
             .then((res) => res.data)
             .catch((error) => {
-                console.log('Cannot remove', error)
-            })
+                console.log("Cannot remove", error);
+            });
     }
 }
 

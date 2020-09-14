@@ -1,5 +1,5 @@
-import types from '../constants'
-import TodoService from '../../services'
+import types from "../constants";
+import TodoService from "../../services";
 // Helper functions to dispatch actions, optionally with payloads
 
 const getTodoList = (todos) => {
@@ -42,12 +42,12 @@ export default {
         return (dispatch) => {
             return TodoService.getAll()
                 .then((res) => {
-                    dispatch(getTodoList(res));
+                    dispatch(getTodoList(res.todo));
                 })
                 .catch((error) => {
-                    console.log('Cannot fetch', error)
-                })
-        }
+                    console.log("Cannot fetch", error);
+                });
+        };
     },
     add: (todo) => {
         return (dispatch) => {
