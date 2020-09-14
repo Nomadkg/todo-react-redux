@@ -5,7 +5,7 @@ import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 import "./input.css";
 
-export default class Input extends Component {
+export default class Form extends Component {
     state = { value: "" };
 
     handleChange = (e) => {
@@ -38,7 +38,7 @@ export default class Input extends Component {
     }
 }
 
-Input.propTypes = {
+Form.propTypes = {
     placeholder: PropTypes.string,
     onAddTodo: PropTypes.func,
 };

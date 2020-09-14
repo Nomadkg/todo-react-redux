@@ -10,8 +10,8 @@ import {
 } from "../features/redux/actions";
 
 import TodoList from "../features/components/TodoList";
-import Input from "../features/components/Input";
-import Title from "../common/components/Title";
+import Form from "../features/components/Form";
+import Header from "../common/components/Header";
 import "./app.css";
 
 function App(props) {
@@ -39,8 +39,8 @@ function App(props) {
 
     return (
         <div className="container">
-            <Title>To-Do List</Title>
-            <Input
+            <Header>To-Do List</Header>
+            <Form
                 placeholder={"Type a todo, then hit enter!"}
                 onAddTodo={onAddTodo}
             />
