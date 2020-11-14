@@ -1,32 +1,85 @@
 import types from '../constants'
-import TodoService from '../../services'
 
-// Helper functions to dispatch actions, optionally with payloads
-const getTodoList = (todos) => {
+const loadTodos = () => {
     return {
-        type: types.GET_ALL,
-        payload: todos
+        type: types.LOAD
     }
 };
 
-const createTodo = (todo) => {
+const loadTodosSuccess = (data) => {
+    return {
+        type: types.LOAD_SUCCESS,
+        payload: data
+    }
+};
+
+const loadTodosFailure = (data) => {
+    return {
+        type: types.LOAD_FAILURE,
+        payload: data
+    }
+};
+
+const addTodo = (todo) => {
     return {
         type: types.ADD,
         payload: todo
     }
 };
 
-const changeState = (todo) => {
+const addTodoSuccess = (todo) => {
+    return {
+        type: types.ADD_SUCCESS,
+        payload: todo
+    }
+};
+
+const addTodoFailure = (data) => {
+    return {
+        type: types.ADD_FAILURE,
+        payload: data
+    }
+};
+
+const toggleTodo = (todo) => {
     return {
         type: types.TOGGLE,
         payload: todo
     }
 };
 
-const updateTodo = (todo) => {
+const toggleTodoSuccess = (todo) => {
+    return {
+        type: types.TOGGLE_SUCCESS,
+        payload: todo
+    }
+};
+
+const toggleTodoFailure = (data) => {
+    return {
+        type: types.TOGGLE_FAILURE,
+        payload: data
+    }
+};
+
+const updateTodo = (id, text) => {
     return {
         type: types.UPDATE,
+        payload: {id, text}
+    }
+};
+
+const updateTodoSuccess = (todo) => {
+    return {
+        type: types.UPDATE_SUCCESS,
         payload: todo
+    }
+};
+
+const updateTodoFailure = (data) => {
+    return {
+        type: types.UPDATE_FAILURE,
+        payload: data
     }
 };
 
@@ -37,71 +90,39 @@ const removeTodo = (data) => {
     }
 };
 
-// Async actions (thunks)
-function loadTodos() {
-    return (dispatch) => {
-        return TodoService.getAll()
-            .then((res) => {
-                dispatch(getTodoList(res.todo));
-            })
-            .catch((error) => {
-                console.log('Cannot fetch', error)
-            })
+const removeTodoSuccess = (data) => {
+    return {
+        type: types.REMOVE_SUCCESS,
+        payload: data
     }
-}
+};
 
-function add(todo) {
-    return (dispatch) => {
-        return TodoService.add(todo)
-            .then((res) => {
-                dispatch(createTodo(res.todo))
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+const removeTodoFailure = (data) => {
+    return {
+        type: types.REMOVE_FAILURE,
+        payload: data
     }
-}
+};
 
-function toggle(id) {
-    return (dispatch) => {
-        return TodoService.toggle(id)
-            .then((res) => {
-                dispatch(changeState(res.todo));
-            })
-            .catch((error) => {
-                console.log('Cannot toggle', error)
-            })
-    }
-}
-
-function update(id, text) {
-    return (dispatch) => {
-        return TodoService.update(id, text)
-            .then((res) => {
-                dispatch(updateTodo(res.todo));
-            })
-            .catch((error) => {
-                console.log('Cannot update', error)
-            })
-    }
-}
-
-function remove(id) {
-    return dispatch => {
-        return TodoService.remove(id)
-            .then((res) => {
-                dispatch(removeTodo(res));
-            })
-            .catch((error) => {
-                console.log('Cannot remove', error)
-            })
-    }
-}
 
 export {
     loadTodos,
-    add,
-    toggle,
-    update,
-    remove
+    loadTodosSuccess,
+    loadTodosFailure,
+
+    addTodo,
+    addTodoSuccess,
+    addTodoFailure,
+
+    toggleTodo,
+    toggleTodoSuccess,
+    toggleTodoFailure,
+
+    updateTodo,
+    updateTodoSuccess,
+    updateTodoFailure,
+
+    removeTodo,
+    removeTodoSuccess,
+    removeTodoFailure
 };

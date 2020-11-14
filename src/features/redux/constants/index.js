@@ -1,8 +1,21 @@
-// The types of actions that you can dispatch to modify the state of the store
 export default {
     ADD: "ADD",
-    GET_ALL: "GET_ALL",
+    ADD_SUCCESS: "ADD_SUCCESS",
+    ADD_FAILURE: "ADD_FAILURE",
+
+    LOAD: "GET_ALL",
+    LOAD_SUCCESS: "LOAD_SUCCESS",
+    LOAD_FAILURE: "LOAD_FAILURE",
+
     REMOVE: "REMOVE",
+    REMOVE_SUCCESS: "REMOVE_SUCCESS",
+    REMOVE_FAILURE: "REMOVE_FAILURE",
+
     TOGGLE: "TOGGLE",
-    UPDATE: "UPDATE"
+    TOGGLE_SUCCESS: "TOGGLE_SUCCESS",
+    TOGGLE_FAILURE: "TOGGLE_FAILURE",
+
+    UPDATE: "UPDATE",
+    UPDATE_SUCCESS: "UPDATE_SUCCESS",
+    UPDATE_FAILURE: "UPDATE_FAILURE"
 };

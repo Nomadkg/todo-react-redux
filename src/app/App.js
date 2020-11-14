@@ -5,7 +5,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import TodoList from '../features/components/TodoList';
 import Form from '../features/components/Form';
 import Header from '../common/components/Header';
-import { add, remove, toggle, update, loadTodos } from '../features/redux/actions';
+import { add, remove, toggle, update, load } from '../features/redux/thunks';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -42,7 +42,7 @@ function App () {
     };
 
     const onLoadTodos = () => {
-        dispatch(loadTodos())
+        dispatch(load())
     };
 
     return (
